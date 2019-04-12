@@ -1,0 +1,8 @@
+body{
+    background-color: #43464B;
+    color: whitesmoke; 
+}
+canvas {
+    border: 1px solid whitesmoke;
+    width: 100%;
+}
