@@ -7,45 +7,46 @@ window.document.addEventListener('DOMContentLoaded', function(){
     //context
     const ctx = canvas.getContext('2d');
 
-    let colorArray = ["red","blue","green","lightblue"],
-        colorArrayLenght = colorArray.length,
-        x = 0,
-        y = 0,
-        i = 0,
-        sqWidth = 50,
-        sqHight = 50;
-
-    setInterval(function(){
+    let width = 1500,
+        height = 750,
         
-        ctx.clearRect(x, y, sqHight, sqWidth);
-        x = x + 5;
-        y = x + 5;
-
-
-        ctx.fillStyle = colorArray[i % colorArrayLenght];
-        ctx.fillRect(x, y, sqHight, sqWidth);
+        shipX = (width / 2) - 50,
+        shipY = height - 80,
+        shipH = 75,
+        shipW = 50,
         
-        if ( i == colorArrayLenght){
-            ctx.clearRect(x, y, sqHight, sqWidth);
-            i = 0;
-            x = 0;
-            y = 0;
-        } else {
-            i ++;
-        }
+        alienX,
+        alienY,
+        alienH,
+        alienW;
+        
 
-    }, 1000);
-
-    /*
-    for(var i = 0; i < 4; i ++){
-        x = x + 10;
-        y = y + 10;
-
-        ctx.fillStyle = colorArray[i];
-        ctx.fillRect(x, y, 100, 100);
-        ctx.clearRect(x, y, 100, 100);
-
+    function Clear(){
+        ctx.clearRect(0, 0, width, height);
     }
-    */
+    function Ship(){
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(shipX, shipY, shipW, shipH);
+    }
+    function Start(){
+        Clear();
+        Ship();
+        Move();
+    }
+    
+    function logKey(e) {
+        //left 37 ArrowLeft
+        //up 38 ArrowUp
+        //right 39 ArrowRight
+        //down 40 ArrowDown
+        console.log('event '+e.code);
+    }
+    function Move(){
+        window.document.addEventListener('keydown', logKey);
+    }
 
+    function Game(){
+        setInterval(Start, 500);
+    }
+    Game();
 });
